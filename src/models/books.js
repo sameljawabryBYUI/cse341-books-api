@@ -1,3 +1,4 @@
+import { ObjectId } from 'mongodb';
 import { getDb } from '../db/connect.js';
 
 const getAllBooks = async () => {
@@ -7,4 +8,11 @@ const getAllBooks = async () => {
   return books;
 };
 
-export { getAllBooks };
+const getSingleBook = async (id) => {
+  const db = getDb();
+  const collection = db.collection('books');
+  const book = await collection.findOne({ _id: new ObjectId(id) });
+  return book;
+};
+
+export { getAllBooks, getSingleBook };
