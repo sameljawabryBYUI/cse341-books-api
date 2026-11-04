@@ -1,4 +1,3 @@
-import { ObjectId } from 'mongodb';
 import { getDb } from '../db/connect.js';
 
 const getAllBooks = async () => {
@@ -11,7 +10,7 @@ const getAllBooks = async () => {
 const getSingleBook = async (id) => {
   const db = getDb();
   const collection = db.collection('books');
-  const book = await collection.findOne({ _id: new ObjectId(id) });
+  const book = await collection.findOne({ id: id });
   return book;
 };
 
